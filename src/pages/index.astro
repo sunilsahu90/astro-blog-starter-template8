@@ -13,12 +13,12 @@ const cfg = {
 };
 
 const services = [
-  { icon: '🩺', title: 'NEET UG Counselling', text: 'Understand MCC and state counselling rounds, eligibility, seat types and what your rank realistically means.' },
-  { icon: '🎓', title: 'MBBS / BDS / AYUSH Guidance', text: 'Compare MBBS, BDS, BAMS, BHMS, BUMS and allied health courses based on your interests, rank and budget.' },
-  { icon: '🏥', title: 'College & Branch Selection', text: 'Government vs private, fees, bond rules, hospital exposure and location, so you pick a college with clear eyes.' },
-  { icon: '📝', title: 'Choice Filling Strategy', text: 'Build a sensible choice list, avoid common mistakes and know when to float, slide or freeze.' },
-  { icon: '📂', title: 'Documents & Process Help', text: 'Checklist for registration, certificates, verification and reporting so nothing is missed on deadlines.' },
-  { icon: '🔬', title: 'PG & Career Planning', text: 'NEET PG, specialisation choices, research and long-term career paths in medicine.' },
+  { icon: '🩺', title: 'NEET UG Counselling', text: 'Understand MCC rounds, state counselling, seat types, eligibility and what your rank realistically means.' },
+  { icon: '🎓', title: 'MBBS / BDS / AYUSH Guidance', text: 'Compare MBBS, BDS, BAMS, BHMS, BUMS and allied health courses based on your interests, budget and rank.' },
+  { icon: '🏥', title: 'College & Branch Selection', text: 'Government vs private, fees, bond rules, hospital exposure and location, so you choose with clarity.' },
+  { icon: '📝', title: 'Choice Filling Strategy', text: 'Build a realistic preference list, avoid common mistakes and know when to float, slide or freeze.' },
+  { icon: '📂', title: 'Documents & Process Help', text: 'Stay ahead on registration, verification, reporting and important deadlines without stress.' },
+  { icon: '🔬', title: 'PG & Career Planning', text: 'NEET PG, specialisation choices, research and long-term career direction in medicine.' },
 ];
 
 const steps = [
@@ -48,6 +48,12 @@ const trustPoints = [
   'Clear answers without confusion',
   'Career choices based on rank and goals',
   'Practical strategy for counselling rounds',
+];
+
+const strengths = [
+  { number: '01', title: 'No false promises', text: 'Realistic counselling advice based on rank, category and seat trends.' },
+  { number: '02', title: 'Straightforward guidance', text: 'Plain-language explanations, so you understand what matters most.' },
+  { number: '03', title: 'Decision support', text: 'Help with comparisons, risks and the right next move at each step.' },
 ];
 ---
 
@@ -145,6 +151,18 @@ const trustPoints = [
           {[...topics, ...topics].map((t) => <span>{t}</span>)}
         </div>
       </div>
+
+      <section class="section feature-band">
+        <div class="feature-grid">
+          {strengths.map((item) => (
+            <div class="feature-card reveal">
+              <span class="feature-num">{item.number}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section id="services" class="section">
         <div class="head reveal">
@@ -763,6 +781,34 @@ const trustPoints = [
       .badge-two { bottom: 20%; left: -14px; }
       .badge-three { bottom: 8%; right: 12%; }
 
+      .feature-band {
+        padding-top: 0;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .feature-card {
+        padding: 26px 22px;
+        border-radius: 22px;
+        background: rgba(10, 17, 26, 0.6);
+        border: 1px solid var(--line);
+      }
+      .feature-num {
+        display: inline-block;
+        font-weight: 800;
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--a);
+        margin-bottom: 14px;
+      }
+      .feature-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+      .feature-card p { color: var(--muted); }
+
       .marquee {
         overflow: hidden;
         border-block: 1px solid var(--line);
@@ -1034,7 +1080,6 @@ const trustPoints = [
         .form { padding: 22px; }
         .floating-badge { display: none; }
         .visual-card { min-height: 410px; }
-        .chip { font-size: 0.72rem; padding: 6px 12px; }
       }
 
       @media (prefers-reduced-motion: reduce) {
