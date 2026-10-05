@@ -30,460 +30,1020 @@ const steps = [
 
 const faqs = [
   { q: 'Who is this counselling for?', a: 'Students and parents who are confused about medical courses, NEET counselling, college selection or career paths after NEET.' },
-  { q: 'Do you guarantee admission into a particular college?', a: 'No. Nobody honestly can. Admissions depend on your rank, category, seat availability and official counselling rules. Guidance helps you make better-informed choices.' },
+  { q: 'Do you guarantee admission into a particular college?', a: 'No. Nobody honestly can. Admissions depend on your rank, category, seat availability and official counselling rules. Guidance helps you make better choices with realistic expectations.' },
   { q: 'Is this an official counselling authority?', a: 'No. This is independent guidance. Always confirm dates, fees and rules on the official MCC and state counselling websites.' },
   { q: 'In which languages can I ask?', a: `You can ask in ${cfg.languages}.` },
   { q: 'How do I get started?', a: 'Use the form on this page. It opens WhatsApp with your details already filled in, so you only need to press send.' },
 ];
 
 const topics = ['NEET UG', 'MCC Counselling', 'State Counselling', 'MBBS', 'BDS', 'BAMS', 'BHMS', 'Nursing & Allied', 'NEET PG', 'Choice Filling', 'College Selection', 'Career Planning'];
+
+const stats = [
+  { value: '1:1', label: 'Personal guidance' },
+  { value: '100%', label: 'Honest advice' },
+  { value: 'Hindi + English', label: 'Comfortable support' },
+];
+
+const trustPoints = [
+  'Clear answers without confusion',
+  'Career choices based on rank and goals',
+  'Practical strategy for counselling rounds',
+];
 ---
 
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{cfg.brand} | Medical Course Counselling</title>
-  <meta name="description" content="Clear, honest medical course counselling: NEET UG and PG guidance, MBBS, BDS and AYUSH college selection, and choice filling help." />
-  <meta property="og:title" content={`${cfg.brand} | Medical Course Counselling`} />
-  <meta property="og:description" content={cfg.tagline} />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0b1220" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-</head>
-<body>
-  <div class="bg-blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{cfg.brand} | Medical Course Counselling</title>
+    <meta
+      name="description"
+      content="Clear, honest medical course counselling: NEET UG and PG guidance, MBBS, BDS and AYUSH college selection, and choice filling help."
+    />
+    <meta property="og:title" content={`${cfg.brand} | Medical Course Counselling`} />
+    <meta property="og:description" content={cfg.tagline} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🩺</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="bg-blobs" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
 
-  <header id="nav" class="nav">
-    <a href="#home" class="logo"><span class="logo-mark">✚</span>{cfg.brand}</a>
-    <nav id="menu" class="menu" aria-label="Main">
-      <a href="#services">Services</a>
-      <a href="#process">How it works</a>
-      <a href="#faq">FAQ</a>
-      <a href="#ask" class="btn btn-sm">Ask a question</a>
-    </nav>
-    <button id="burger" class="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
-  </header>
+    <header id="nav" class="nav">
+      <a href="#home" class="logo"><span class="logo-mark">✚</span><span>{cfg.brand}</span></a>
+      <nav id="menu" class="menu" aria-label="Main">
+        <a href="#services">Services</a>
+        <a href="#process">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a href="#ask" class="btn btn-sm">Ask a question</a>
+      </nav>
+      <button id="burger" class="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </header>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-text">
-        <span class="pill reveal">Medical course counselling</span>
-        <h1 class="reveal">Confused about <span class="grad" id="typed">NEET counselling</span>?<br />Ask Dr. Lokesh.</h1>
-        <p class="lead reveal">{cfg.tagline} Get guidance on courses, colleges and choice filling in {cfg.languages}.</p>
-        <div class="cta reveal">
-          <a href="#ask" class="btn">Ask your question</a>
-          <a href="#services" class="btn btn-ghost">See services</a>
-        </div>
-        <ul class="trust reveal">
-          <li>✔ 1-on-1 guidance</li>
-          <li>✔ Honest, no false promises</li>
-          <li>✔ {cfg.languages}</li>
-        </ul>
-      </div>
-      <div class="hero-art reveal" aria-hidden="true">
-        <div class="orbit">
-          <div class="core">🩺</div>
-          <span class="chip c1">NEET UG</span>
-          <span class="chip c2">MBBS</span>
-          <span class="chip c3">Choice Filling</span>
-          <span class="chip c4">NEET PG</span>
-        </div>
-        <svg class="pulse" viewBox="0 0 400 80" preserveAspectRatio="none">
-          <path d="M0 40 H110 L135 10 L165 70 L190 25 L210 40 H400" />
-        </svg>
-      </div>
-    </section>
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-copy reveal">
+          <span class="pill">Medical course counselling</span>
+          <h1>
+            Confused about <span class="grad" id="typed">NEET counselling</span>?<br />
+            Ask the right guidance.
+          </h1>
+          <p class="lead">{cfg.tagline} Get guidance on courses, colleges and choice filling in {cfg.languages}.</p>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="track">
-        {[...topics, ...topics].map((t) => <span>{t}</span>)}
-      </div>
-    </div>
-
-    <section id="services" class="section">
-      <div class="head reveal">
-        <span class="eyebrow">What you can ask</span>
-        <h2>Guidance for every step of your medical journey</h2>
-      </div>
-      <div class="grid">
-        {services.map((s, i) => (
-          <article class="card tilt reveal" style={`--d:${i * 70}ms`}>
-            <div class="icon">{s.icon}</div>
-            <h3>{s.title}</h3>
-            <p>{s.text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section id="process" class="section alt">
-      <div class="head reveal">
-        <span class="eyebrow">Simple process</span>
-        <h2>From confusion to a clear plan in four steps</h2>
-      </div>
-      <ol class="steps">
-        {steps.map((s, i) => (
-          <li class="step reveal" style={`--d:${i * 90}ms`}>
-            <span class="num">{s.n}</span>
-            <h3>{s.title}</h3>
-            <p>{s.text}</p>
-          </li>
-        ))}
-      </ol>
-    </section>
-
-    <section id="ask" class="section">
-      <div class="ask-wrap">
-        <div class="ask-info reveal">
-          <span class="eyebrow">Free to ask</span>
-          <h2>Ask Dr. Lokesh your question</h2>
-          <p>Fill in a few details. Pressing the button opens WhatsApp with your message ready to send, so there is no waiting on a form.</p>
-          <ul class="info-list">
-            <li>📱 Reply on WhatsApp</li>
-            <li>✉️ <a href={`mailto:${cfg.email}`}>{cfg.email}</a></li>
-            <li>🗣️ {cfg.languages}</li>
-          </ul>
-        </div>
-
-        <form id="askForm" class="form reveal" data-wa={cfg.whatsapp} data-email={cfg.email} novalidate>
-          <label>Your name
-            <input name="name" type="text" placeholder="Full name" required autocomplete="name" />
-          </label>
-          <label>Phone / WhatsApp
-            <input name="phone" type="tel" placeholder="10-digit mobile number" required inputmode="numeric" autocomplete="tel" />
-          </label>
-          <div class="row">
-            <label>Exam stage
-              <select name="stage" required>
-                <option value="">Select</option>
-                <option>12th appearing</option>
-                <option>NEET UG result awaited</option>
-                <option>NEET UG qualified</option>
-                <option>NEET PG aspirant</option>
-                <option>Parent / Guardian</option>
-                <option>Other</option>
-              </select>
-            </label>
-            <label>I need help with
-              <select name="topic" required>
-                <option value="">Select</option>
-                {services.map((s) => <option>{s.title}</option>)}
-              </select>
-            </label>
+          <div class="cta">
+            <a href="#ask" class="btn">Ask your question</a>
+            <a href="#services" class="btn btn-ghost">See services</a>
           </div>
-          <label>Your question
-            <textarea name="msg" rows="4" placeholder="Share your rank/score, category, state and what confuses you"></textarea>
-          </label>
-          <p id="formMsg" class="form-msg" role="alert" aria-live="polite"></p>
-          <button type="submit" class="btn btn-block">Send on WhatsApp</button>
-          <button type="button" id="mailBtn" class="btn btn-ghost btn-block">Send by email instead</button>
-        </form>
+
+          <div class="stats-row">
+            {stats.map((stat) => (
+              <div class="stat-box">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="visual-card">
+            <div class="panel-top">Trusted support</div>
+            <div class="doctor-card">
+              <div class="avatar">🩺</div>
+              <div>
+                <small>Guidance for</small>
+                <h3>{cfg.brand}</h3>
+              </div>
+            </div>
+
+            <ul class="check-list">
+              {trustPoints.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+
+            <div class="mini-chart">
+              <span class="dot d1"></span>
+              <span class="dot d2"></span>
+              <span class="dot d3"></span>
+              <span class="dot d4"></span>
+            </div>
+
+            <div class="floating-badge badge-one">NEET UG</div>
+            <div class="floating-badge badge-two">MBBS</div>
+            <div class="floating-badge badge-three">Choice Filling</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="track">
+          {[...topics, ...topics].map((t) => <span>{t}</span>)}
+        </div>
       </div>
-    </section>
 
-    <section id="faq" class="section alt">
-      <div class="head reveal">
-        <span class="eyebrow">Good to know</span>
-        <h2>Frequently asked questions</h2>
+      <section id="services" class="section">
+        <div class="head reveal">
+          <span class="eyebrow">What you can ask</span>
+          <h2>Guidance for every step of your medical journey</h2>
+        </div>
+        <div class="grid">
+          {services.map((s, i) => (
+            <article class="card tilt reveal" style={`--d:${i * 70}ms`}>
+              <div class="icon">{s.icon}</div>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="process" class="section alt">
+        <div class="head reveal">
+          <span class="eyebrow">Simple process</span>
+          <h2>From confusion to a clear plan in four steps</h2>
+        </div>
+        <ol class="steps">
+          {steps.map((s, i) => (
+            <li class="step reveal" style={`--d:${i * 90}ms`}>
+              <span class="num">{s.n}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="ask" class="section">
+        <div class="ask-wrap">
+          <div class="ask-info reveal">
+            <span class="eyebrow">Free to ask</span>
+            <h2>Ask Dr. Lokesh your question</h2>
+            <p>Fill in a few details. Pressing the button opens WhatsApp with your message ready to send, so there is no waiting on a form.</p>
+            <ul class="info-list">
+              <li>📱 Reply on WhatsApp</li>
+              <li>✉️ <a href={`mailto:${cfg.email}`}>{cfg.email}</a></li>
+              <li>🗣️ {cfg.languages}</li>
+            </ul>
+          </div>
+
+          <form id="askForm" class="form reveal" data-wa={cfg.whatsapp} data-email={cfg.email} novalidate>
+            <label>
+              Your name
+              <input name="name" type="text" placeholder="Full name" required autocomplete="name" />
+            </label>
+            <label>
+              Phone / WhatsApp
+              <input name="phone" type="tel" placeholder="10-digit mobile number" required inputmode="numeric" autocomplete="tel" />
+            </label>
+            <div class="row">
+              <label>
+                Exam stage
+                <select name="stage" required>
+                  <option value="">Select</option>
+                  <option>12th appearing</option>
+                  <option>NEET UG result awaited</option>
+                  <option>NEET UG qualified</option>
+                  <option>NEET PG aspirant</option>
+                  <option>Parent / Guardian</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>
+                I need help with
+                <select name="topic" required>
+                  <option value="">Select</option>
+                  {services.map((s) => <option>{s.title}</option>)}
+                </select>
+              </label>
+            </div>
+            <label>
+              Your question
+              <textarea name="msg" rows="4" placeholder="Share your rank/score, category, state and what confuses you"></textarea>
+            </label>
+            <p id="formMsg" class="form-msg" role="alert" aria-live="polite"></p>
+            <button type="submit" class="btn btn-block">Send on WhatsApp</button>
+            <button type="button" id="mailBtn" class="btn btn-ghost btn-block">Send by email instead</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq" class="section alt">
+        <div class="head reveal">
+          <span class="eyebrow">Good to know</span>
+          <h2>Frequently asked questions</h2>
+        </div>
+        <div class="faq">
+          {faqs.map((f) => (
+            <details class="reveal">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="foot-inner">
+        <div>
+          <a href="#home" class="logo"><span class="logo-mark">✚</span>{cfg.brand}</a>
+          <p class="muted">{cfg.tagline}</p>
+        </div>
+        <p class="muted small">
+          Disclaimer: This is independent guidance and not an official counselling authority. No admission is guaranteed. Please verify dates,
+          fees and rules on official MCC and state counselling portals.
+        </p>
       </div>
-      <div class="faq">
-        {faqs.map((f) => (
-          <details class="reveal">
-            <summary>{f.q}</summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
-      </div>
-    </section>
-  </main>
+      <p class="copy">© {new Date().getFullYear()} {cfg.brand}. All rights reserved.</p>
+    </footer>
 
-  <footer class="footer">
-    <div class="foot-inner">
-      <div>
-        <a href="#home" class="logo"><span class="logo-mark">✚</span>{cfg.brand}</a>
-        <p class="muted">{cfg.tagline}</p>
-      </div>
-      <p class="muted small">Disclaimer: This is independent guidance and not an official counselling authority. No admission is guaranteed. Please verify dates, fees and rules on official MCC and state counselling websites.</p>
-    </div>
-    <p class="copy">© {new Date().getFullYear()} {cfg.brand}. All rights reserved.</p>
-  </footer>
+    <a id="waFloat" class="wa-float" href={`https://wa.me/${cfg.whatsapp}`} target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
 
-  <a id="waFloat" class="wa-float" href={`https://wa.me/${cfg.whatsapp}`} target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
-
-  <script>
-    // ---------- Mobile menu ----------
-    const burger = document.getElementById('burger');
-    const menu = document.getElementById('menu');
-    burger?.addEventListener('click', () => {
-      const open = menu.classList.toggle('open');
-      burger.setAttribute('aria-expanded', String(open));
-    });
-    menu?.querySelectorAll('a').forEach((a) =>
-      a.addEventListener('click', () => {
-        menu.classList.remove('open');
-        burger?.setAttribute('aria-expanded', 'false');
-      })
-    );
-
-    // ---------- Sticky nav shadow ----------
-    const nav = document.getElementById('nav');
-    const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 10);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // ---------- Scroll reveal ----------
-    const items = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver(
-        (entries) =>
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add('in');
-              io.unobserve(e.target);
-            }
-          }),
-        { threshold: 0.12 }
-      );
-      items.forEach((el) => io.observe(el));
-    } else {
-      items.forEach((el) => el.classList.add('in'));
-    }
-
-    // ---------- Typing word rotation ----------
-    const words = ['NEET counselling', 'choosing MBBS', 'college selection', 'choice filling', 'NEET PG'];
-    const typed = document.getElementById('typed');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (typed && !reduce) {
-      let w = 0, c = words[0].length, del = true;
-      const tick = () => {
-        const word = words[w];
-        typed.textContent = word.slice(0, c);
-        if (del) {
-          c--;
-          if (c < 0) { del = false; w = (w + 1) % words.length; c = 0; }
-          setTimeout(tick, 40);
-        } else {
-          c++;
-          if (c > words[w].length) { del = true; c = words[w].length; setTimeout(tick, 1800); return; }
-          setTimeout(tick, 70);
-        }
-      };
-      setTimeout(tick, 2200);
-    }
-
-    // ---------- Card tilt on hover (desktop only) ----------
-    if (window.matchMedia('(hover: hover)').matches && !reduce) {
-      document.querySelectorAll('.tilt').forEach((card) => {
-        card.addEventListener('mousemove', (e) => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5;
-          const y = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
-        });
-        card.addEventListener('mouseleave', () => (card.style.transform = ''));
+    <script>
+      // ---------- Mobile menu ----------
+      const burger = document.getElementById('burger');
+      const menu = document.getElementById('menu');
+      burger?.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        burger.setAttribute('aria-expanded', String(open));
       });
-    }
+      menu?.querySelectorAll('a').forEach((a) =>
+        a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          burger?.setAttribute('aria-expanded', 'false');
+        })
+      );
 
-    // ---------- Form: validate and open WhatsApp / email ----------
-    const form = document.getElementById('askForm');
-    const msgBox = document.getElementById('formMsg');
-    const mailBtn = document.getElementById('mailBtn');
+      // ---------- Sticky nav shadow ----------
+      const nav = document.getElementById('nav');
+      const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 10);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
 
-    function collect() {
-      const f = new FormData(form);
-      const v = (k) => String(f.get(k) || '').trim();
-      const data = { name: v('name'), phone: v('phone'), stage: v('stage'), topic: v('topic'), msg: v('msg') };
-      if (data.name.length < 2) return { error: 'Please enter your name.' };
-      if (!/^[0-9+\-\s]{10,15}$/.test(data.phone)) return { error: 'Please enter a valid phone number.' };
-      if (!data.stage) return { error: 'Please select your exam stage.' };
-      if (!data.topic) return { error: 'Please select what you need help with.' };
-      const text =
-        `Hello Dr. Lokesh,\n\nName: ${data.name}\nPhone: ${data.phone}\nStage: ${data.stage}\nTopic: ${data.topic}\n` +
-        `Question: ${data.msg || '(not provided)'}`;
-      return { data, text };
-    }
-
-    function show(msg, ok) {
-      msgBox.textContent = msg;
-      msgBox.className = 'form-msg ' + (ok ? 'ok' : 'err');
-    }
-
-    form?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const r = collect();
-      if (r.error) return show(r.error, false);
-      const num = (form.dataset.wa || '').replace(/\D/g, '');
-      if (!/^\d{11,14}$/.test(num)) {
-        return show('WhatsApp number is not set yet. Please use the email option for now.', false);
+      // ---------- Scroll reveal ----------
+      const items = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) =>
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0.12 }
+        );
+        items.forEach((el) => io.observe(el));
+      } else {
+        items.forEach((el) => el.classList.add('in'));
       }
-      show('Opening WhatsApp…', true);
-      window.open(`https://wa.me/${num}?text=${encodeURIComponent(r.text)}`, '_blank', 'noopener');
-    });
 
-    mailBtn?.addEventListener('click', () => {
-      const r = collect();
-      if (r.error) return show(r.error, false);
-      const to = form.dataset.email || '';
-      show('Opening your email app…', true);
-      window.location.href = `mailto:${to}?subject=${encodeURIComponent('Counselling query from ' + r.data.name)}&body=${encodeURIComponent(r.text)}`;
-    });
-  </script>
+      // ---------- Typing word rotation ----------
+      const words = ['NEET counselling', 'choosing MBBS', 'college selection', 'choice filling', 'NEET PG'];
+      const typed = document.getElementById('typed');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (typed && !reduce) {
+        let w = 0,
+          c = words[0].length,
+          del = true;
+        const tick = () => {
+          const word = words[w];
+          typed.textContent = word.slice(0, c);
+          if (del) {
+            c--;
+            if (c < 0) {
+              del = false;
+              w = (w + 1) % words.length;
+              c = 0;
+            }
+            setTimeout(tick, 40);
+          } else {
+            c++;
+            if (c > words[w].length) {
+              del = true;
+              c = words[w].length;
+              setTimeout(tick, 1800);
+              return;
+            }
+            setTimeout(tick, 70);
+          }
+        };
+        setTimeout(tick, 2200);
+      }
 
-  <style is:global>
-    :root {
-      --bg: #0b1220; --bg2: #0f1a2e; --card: rgba(255,255,255,.05); --line: rgba(255,255,255,.1);
-      --text: #e8eefc; --muted: #9fb0cf; --a: #14e0b4; --b: #3b82f6; --c: #a78bfa;
-      --grad: linear-gradient(135deg, var(--a), var(--b) 55%, var(--c));
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-decoration: none; }
-    h1, h2 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.15; }
-    ul, ol { list-style: none; }
+      // ---------- Card tilt on hover (desktop only) ----------
+      if (window.matchMedia('(hover: hover)').matches && !reduce) {
+        document.querySelectorAll('.tilt').forEach((card) => {
+          card.addEventListener('mousemove', (e) => {
+            const r = card.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5;
+            const y = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform = `perspective(700px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-4px)`;
+          });
+          card.addEventListener('mouseleave', () => (card.style.transform = ''));
+        });
+      }
 
-    /* background blobs */
-    .bg-blobs { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
-    .blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; animation: float 18s ease-in-out infinite; }
-    .b1 { width: 420px; height: 420px; background: var(--a); top: -80px; left: -80px; }
-    .b2 { width: 480px; height: 480px; background: var(--b); top: 35%; right: -140px; animation-delay: -6s; }
-    .b3 { width: 380px; height: 380px; background: var(--c); bottom: -100px; left: 25%; animation-delay: -11s; }
-    @keyframes float { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,-50px) scale(1.12); } }
+      // ---------- Form: validate and open WhatsApp / email ----------
+      const form = document.getElementById('askForm');
+      const msgBox = document.getElementById('formMsg');
+      const mailBtn = document.getElementById('mailBtn');
 
-    /* nav */
-    .nav { position: fixed; top: 0; inset-inline: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 14px 5vw; transition: .3s; }
-    .nav.scrolled { background: rgba(11,18,32,.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
-    .logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; }
-    .logo-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--grad); color: #04101f; font-weight: 800; }
-    .menu { display: flex; align-items: center; gap: 28px; font-weight: 500; font-size: .95rem; color: var(--muted); }
-    .menu a:hover { color: #fff; }
-    .burger { display: none; background: none; border: 0; cursor: pointer; width: 40px; height: 40px; flex-direction: column; justify-content: center; gap: 6px; align-items: center; }
-    .burger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: .3s; }
+      function collect() {
+        const f = new FormData(form);
+        const v = (k) => String(f.get(k) || '').trim();
+        const data = { name: v('name'), phone: v('phone'), stage: v('stage'), topic: v('topic'), msg: v('msg') };
+        if (data.name.length < 2) return { error: 'Please enter your name.' };
+        if (!/^[0-9+\-\s]{10,15}$/.test(data.phone)) return { error: 'Please enter a valid phone number.' };
+        if (!data.stage) return { error: 'Please select your exam stage.' };
+        if (!data.topic) return { error: 'Please select what you need help with.' };
+        const text =
+          `Hello Dr. Lokesh,\n\nName: ${data.name}\nPhone: ${data.phone}\nStage: ${data.stage}\nTopic: ${data.topic}\n` +
+          `Question: ${data.msg || '(not provided)'}`;
+        return { data, text };
+      }
 
-    /* buttons */
-    .btn { display: inline-block; padding: 13px 26px; border-radius: 999px; font-weight: 700; font-size: .98rem; color: #04101f; background: var(--grad); border: 0; cursor: pointer; transition: transform .25s, box-shadow .25s; box-shadow: 0 8px 28px rgba(20,224,180,.25); font-family: inherit; }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(59,130,246,.4); }
-    .btn-sm { padding: 9px 20px; font-size: .9rem; color: #04101f !important; }
-    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--line); box-shadow: none; }
-    .btn-ghost:hover { background: var(--card); box-shadow: none; }
-    .btn-block { width: 100%; text-align: center; }
+      function show(msg, ok) {
+        msgBox.textContent = msg;
+        msgBox.className = 'form-msg ' + (ok ? 'ok' : 'err');
+      }
 
-    /* hero */
-    .hero { min-height: 100vh; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 120px 5vw 60px; max-width: 1280px; margin: 0 auto; }
-    .pill { display: inline-block; padding: 7px 16px; border: 1px solid var(--line); background: var(--card); border-radius: 999px; font-size: .82rem; color: var(--a); font-weight: 600; margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(2.2rem, 5.2vw, 4rem); margin-bottom: 20px; }
-    .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    #typed::after { content: '|'; color: var(--a); -webkit-text-fill-color: var(--a); animation: blink 1s steps(1) infinite; margin-left: 2px; }
-    @keyframes blink { 50% { opacity: 0; } }
-    .lead { font-size: 1.1rem; color: var(--muted); max-width: 540px; margin-bottom: 30px; }
-    .cta { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 28px; }
-    .trust { display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--muted); font-size: .9rem; }
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const r = collect();
+        if (r.error) return show(r.error, false);
+        const num = (form.dataset.wa || '').replace(/\D/g, '');
+        if (!/^\d{11,14}$/.test(num)) {
+          return show('WhatsApp number is not set yet. Please use the email option for now.', false);
+        }
+        show('Opening WhatsApp…', true);
+        window.open(`https://wa.me/${num}?text=${encodeURIComponent(r.text)}`, '_blank', 'noopener');
+      });
 
-    .hero-art { position: relative; display: grid; place-items: center; min-height: 420px; }
-    .orbit { position: relative; width: min(380px, 80vw); aspect-ratio: 1; border-radius: 50%; border: 1px dashed var(--line); animation: spin 28s linear infinite; }
-    .orbit::before { content: ''; position: absolute; inset: 14%; border-radius: 50%; border: 1px dashed var(--line); }
-    .core { position: absolute; inset: 30%; border-radius: 50%; display: grid; place-items: center; font-size: 4rem; background: var(--grad); box-shadow: 0 0 80px rgba(20,224,180,.45); animation: spin 28s linear infinite reverse, glow 3s ease-in-out infinite; }
-    .chip { position: absolute; padding: 8px 16px; border-radius: 999px; background: rgba(15,26,46,.92); border: 1px solid var(--line); font-size: .82rem; font-weight: 600; white-space: nowrap; animation: spin 28s linear infinite reverse; backdrop-filter: blur(8px); }
-    .c1 { top: -4%; left: 50%; margin-left: -40px; }
-    .c2 { top: 48%; right: -8%; }
-    .c3 { bottom: -4%; left: 50%; margin-left: -55px; }
-    .c4 { top: 48%; left: -8%; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes glow { 50% { box-shadow: 0 0 110px rgba(59,130,246,.6); } }
-    .pulse { position: absolute; bottom: 4%; width: 100%; height: 70px; opacity: .8; }
-    .pulse path { fill: none; stroke: var(--a); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 3s linear infinite; filter: drop-shadow(0 0 6px var(--a)); }
-    @keyframes draw { 60% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -600; } }
+      mailBtn?.addEventListener('click', () => {
+        const r = collect();
+        if (r.error) return show(r.error, false);
+        const to = form.dataset.email || '';
+        show('Opening your email app…', true);
+        window.location.href = `mailto:${to}?subject=${encodeURIComponent('Counselling query from ' + r.data.name)}&body=${encodeURIComponent(r.text)}`;
+      });
+    </script>
 
-    /* marquee */
-    .marquee { overflow: hidden; border-block: 1px solid var(--line); background: rgba(255,255,255,.02); padding: 16px 0; }
-    .track { display: flex; gap: 48px; width: max-content; animation: scroll 32s linear infinite; }
-    .track span { color: var(--muted); font-weight: 600; white-space: nowrap; }
-    .track span::before { content: '✚'; color: var(--a); margin-right: 14px; }
-    @keyframes scroll { to { transform: translateX(-50%); } }
+    <style is:global>
+      :root {
+        --bg: #071521;
+        --bg2: #0d1f2c;
+        --panel: rgba(12, 22, 34, 0.76);
+        --panel-strong: rgba(9, 16, 26, 0.9);
+        --card: rgba(17, 27, 40, 0.7);
+        --line: rgba(148, 163, 184, 0.18);
+        --text: #edf6ff;
+        --muted: #afc4dd;
+        --a: #32e0b0;
+        --b: #4f8cff;
+        --c: #b486ff;
+        --shadow: rgba(3, 8, 15, 0.5);
+        --grad: linear-gradient(135deg, var(--a), var(--b) 55%, var(--c));
+      }
 
-    /* sections */
-    .section { padding: 96px 5vw; max-width: 1280px; margin: 0 auto; }
-    .section.alt { max-width: none; background: linear-gradient(180deg, transparent, rgba(255,255,255,.03), transparent); }
-    .section.alt > * { max-width: 1180px; margin-inline: auto; }
-    .head { text-align: center; margin-bottom: 52px; }
-    .eyebrow { display: inline-block; color: var(--a); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .78rem; margin-bottom: 12px; }
-    .head h2, .ask-info h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+      body {
+        font-family: 'Inter', system-ui, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(79, 140, 255, 0.18), transparent 26%),
+          radial-gradient(circle at 80% 20%, rgba(180, 134, 255, 0.14), transparent 22%),
+          linear-gradient(180deg, #071521 0%, #091c2d 32%, #071521 100%);
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration: none; }
+      h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.12; }
+      ul, ol { list-style: none; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
-    .card { padding: 30px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); backdrop-filter: blur(10px); transition: transform .25s ease, border-color .25s; }
-    .card:hover { border-color: rgba(20,224,180,.5); }
-    .icon { width: 56px; height: 56px; display: grid; place-items: center; font-size: 1.7rem; border-radius: 16px; background: rgba(20,224,180,.1); margin-bottom: 18px; }
-    .card h3 { font-size: 1.15rem; margin-bottom: 8px; }
-    .card p { color: var(--muted); font-size: .96rem; }
+      .bg-blobs {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        opacity: 0.42;
+        animation: float 18s ease-in-out infinite;
+      }
+      .b1 { width: 420px; height: 420px; background: rgba(50, 224, 176, 0.35); top: -80px; left: -80px; }
+      .b2 { width: 500px; height: 500px; background: rgba(79, 140, 255, 0.35); top: 35%; right: -120px; animation-delay: -6s; }
+      .b3 { width: 380px; height: 380px; background: rgba(180, 134, 255, 0.32); bottom: -80px; left: 22%; animation-delay: -11s; }
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(40px, -50px) scale(1.12); }
+      }
 
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
-    .step { padding: 28px; border-radius: 20px; border: 1px solid var(--line); background: var(--card); position: relative; }
-    .num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 800; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .step h3 { margin: 6px 0; }
-    .step p { color: var(--muted); font-size: .95rem; }
+      .nav {
+        position: fixed;
+        top: 0;
+        inset-inline: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 5vw;
+        transition: 0.3s ease;
+      }
+      .nav.scrolled {
+        background: rgba(7, 21, 33, 0.75);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 18px 38px rgba(0, 0, 0, 0.1);
+      }
 
-    /* ask */
-    .ask-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; }
-    .ask-info p { color: var(--muted); margin: 16px 0 24px; }
-    .info-list { display: grid; gap: 10px; color: var(--text); }
-    .info-list a { color: var(--a); }
-    .form { padding: 32px; border-radius: 24px; background: var(--card); border: 1px solid var(--line); backdrop-filter: blur(14px); display: grid; gap: 16px; }
-    .form label { display: grid; gap: 7px; font-size: .88rem; font-weight: 600; color: var(--muted); }
-    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .form input, .form select, .form textarea { width: 100%; padding: 13px 15px; border-radius: 12px; border: 1px solid var(--line); background: rgba(8,14,26,.7); color: var(--text); font: inherit; font-weight: 400; transition: border-color .2s, box-shadow .2s; }
-    .form select option { background: #0f1a2e; }
-    .form input:focus, .form select:focus, .form textarea:focus { outline: 0; border-color: var(--a); box-shadow: 0 0 0 3px rgba(20,224,180,.18); }
-    .form textarea { resize: vertical; }
-    .form-msg { min-height: 20px; font-size: .9rem; font-weight: 600; }
-    .form-msg.err { color: #ff8a8a; }
-    .form-msg.ok { color: var(--a); }
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .logo-mark {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: var(--grad);
+        color: #061521;
+        font-weight: 800;
+        box-shadow: 0 10px 24px rgba(79, 140, 255, 0.45);
+      }
 
-    /* faq */
-    .faq { max-width: 820px !important; display: grid; gap: 14px; }
-    details { border: 1px solid var(--line); background: var(--card); border-radius: 16px; padding: 18px 22px; transition: border-color .25s; }
-    details[open] { border-color: rgba(20,224,180,.5); }
-    summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
-    summary::-webkit-details-marker { display: none; }
-    summary::after { content: '+'; font-size: 1.4rem; color: var(--a); transition: transform .3s; line-height: 1; }
-    details[open] summary::after { transform: rotate(45deg); }
-    details p { color: var(--muted); margin-top: 12px; }
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        color: var(--muted);
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+      .menu a:hover { color: var(--text); }
 
-    /* footer */
-    .footer { border-top: 1px solid var(--line); padding: 44px 5vw 24px; background: rgba(0,0,0,.2); }
-    .foot-inner { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px; }
-    .muted { color: var(--muted); } .small { font-size: .82rem; } .footer .muted { margin-top: 10px; }
-    .copy { text-align: center; color: var(--muted); font-size: .82rem; margin-top: 32px; }
+      .burger {
+        display: none;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        align-items: center;
+      }
+      .burger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: #fff;
+        border-radius: 2px;
+        transition: 0.3s;
+      }
 
-    .wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-size: 1.6rem; background: #25d366; box-shadow: 0 8px 26px rgba(37,211,102,.5); animation: bob 2.6s ease-in-out infinite; }
-    @keyframes bob { 50% { transform: translateY(-7px); } }
+      .btn {
+        display: inline-block;
+        padding: 13px 26px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 0.98rem;
+        color: #04101f;
+        background: var(--grad);
+        border: 0;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        box-shadow: 0 18px 38px rgba(79, 140, 255, 0.28);
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 42px rgba(79, 140, 255, 0.35);
+      }
+      .btn-sm { padding: 9px 20px; font-size: 0.9rem; }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid var(--line);
+        box-shadow: none;
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow: none;
+      }
+      .btn-block { width: 100%; text-align: center; }
 
-    /* reveal */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease var(--d, 0ms), transform .8s ease var(--d, 0ms); }
-    .reveal.in { opacity: 1; transform: none; }
+      .hero {
+        max-width: 1280px;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 42px;
+        align-items: center;
+        margin: 0 auto;
+        padding: 120px 5vw 72px;
+      }
+      .hero-copy { position: relative; }
+      .pill {
+        display: inline-block;
+        margin-bottom: 18px;
+        padding: 8px 16px;
+        border: 1px solid rgba(50, 224, 176, 0.28);
+        border-radius: 999px;
+        background: rgba(12, 22, 34, 0.5);
+        color: var(--a);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 5rem);
+        letter-spacing: -0.06em;
+        margin-bottom: 18px;
+      }
+      .grad {
+        background: var(--grad);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      #typed::after {
+        content: '|';
+        color: var(--a);
+        -webkit-text-fill-color: var(--a);
+        animation: blink 1s steps(1) infinite;
+        margin-left: 2px;
+      }
+      @keyframes blink { 50% { opacity: 0; } }
+      .lead {
+        max-width: 560px;
+        font-size: 1.08rem;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 30px;
+      }
+      .stats-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .stat-box {
+        min-width: 150px;
+        padding: 18px 18px 16px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(17, 27, 40, 0.44);
+        backdrop-filter: blur(10px);
+      }
+      .stat-box strong {
+        display: block;
+        font-size: 1.05rem;
+        margin-bottom: 3px;
+        font-weight: 800;
+      }
+      .stat-box span {
+        color: var(--muted);
+        font-size: 0.76rem;
+      }
 
-    /* responsive */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; padding-top: 110px; text-align: center; }
-      .lead { margin-inline: auto; } .cta, .trust { justify-content: center; }
-      .hero-art { min-height: 360px; }
-      .ask-wrap, .foot-inner { grid-template-columns: 1fr; }
-      .burger { display: flex; }
-      .menu { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: rgba(11,18,32,.97); border-bottom: 1px solid var(--line); max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-      .menu.open { max-height: 400px; }
-      .menu a { padding: 16px 5vw; width: 100%; border-top: 1px solid var(--line); }
-      .menu .btn { margin: 12px 5vw 18px; width: auto; text-align: center; }
-      .section { padding: 72px 5vw; }
-    }
-    @media (max-width: 520px) { .row { grid-template-columns: 1fr; } .form { padding: 22px; } .chip { font-size: .72rem; padding: 6px 12px; } }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .reveal { opacity: 1; transform: none; }
-    }
-  </style>
-</body>
+      .hero-visual {
+        display: grid;
+        place-items: center;
+      }
+      .visual-card {
+        position: relative;
+        width: min(430px, 84vw);
+        min-height: 470px;
+        padding: 26px 24px 22px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(13, 25, 38, 0.9), rgba(9, 17, 28, 0.95));
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+        overflow: hidden;
+      }
+      .visual-card::before {
+        content: '';
+        position: absolute;
+        inset: -40% 25% auto auto;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: rgba(79, 140, 255, 0.16);
+        filter: blur(30px);
+      }
+      .panel-top {
+        display: inline-block;
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--a);
+        font-weight: 700;
+      }
+      .doctor-card {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 20px;
+        padding: 18px 18px 16px;
+        border-radius: 20px;
+        background: rgba(8, 15, 24, 0.7);
+        border: 1px solid var(--line);
+      }
+      .avatar {
+        display: grid;
+        place-items: center;
+        width: 74px;
+        height: 74px;
+        border-radius: 22px;
+        background: var(--grad);
+        font-size: 2.3rem;
+        box-shadow: 0 20px 34px rgba(50, 224, 176, 0.2);
+      }
+      .doctor-card small {
+        display: block;
+        color: var(--muted);
+        font-size: 0.72rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .doctor-card h3 {
+        font-size: 1.5rem;
+        margin-top: 2px;
+      }
+
+      .check-list {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 12px;
+        margin-top: 22px;
+      }
+      .check-list li {
+        position: relative;
+        padding-left: 30px;
+        color: var(--muted);
+      }
+      .check-list li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        top: -2px;
+        display: inline-grid;
+        place-items: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: rgba(50, 224, 176, 0.18);
+        color: var(--a);
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      .mini-chart {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: end;
+        gap: 10px;
+        height: 120px;
+        margin-top: 22px;
+        padding: 18px 12px 8px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--line);
+      }
+      .dot {
+        display: block;
+        width: 22%;
+        border-radius: 999px 999px 0 0;
+        background: linear-gradient(180deg, var(--a), var(--b));
+        box-shadow: 0 16px 32px rgba(50, 224, 176, 0.18);
+      }
+      .d1 { height: 34%; }
+      .d2 { height: 55%; }
+      .d3 { height: 72%; }
+      .d4 { height: 90%; }
+
+      .floating-badge {
+        position: absolute;
+        padding: 9px 14px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 999px;
+        background: rgba(10, 18, 29, 0.8);
+        color: var(--text);
+        font-size: 0.73rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+      }
+      .badge-one { top: 25%; right: -10px; }
+      .badge-two { bottom: 20%; left: -14px; }
+      .badge-three { bottom: 8%; right: 12%; }
+
+      .marquee {
+        overflow: hidden;
+        border-block: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.015);
+        padding: 16px 0;
+      }
+      .track {
+        display: flex;
+        gap: 48px;
+        width: max-content;
+        animation: scroll 32s linear infinite;
+      }
+      .track span {
+        color: var(--muted);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .track span::before { content: '✚'; color: var(--a); margin-right: 14px; }
+      @keyframes scroll { to { transform: translateX(-50%); } }
+
+      .section {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 96px 5vw;
+      }
+      .section.alt {
+        max-width: none;
+        background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.025), transparent);
+      }
+      .section.alt > * { max-width: 1180px; margin: 0 auto; }
+      .head { text-align: center; margin-bottom: 52px; }
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 12px;
+        color: var(--a);
+        font-size: 0.78rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .head h2, .ask-info h2 { font-size: clamp(1.9rem, 3.3vw, 2.9rem); }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 22px;
+      }
+      .card {
+        padding: 28px 24px 26px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(16, 25, 38, 0.8), rgba(10, 17, 26, 0.82));
+        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .card:hover {
+        border-color: rgba(50, 224, 176, 0.43);
+        box-shadow: 0 20px 46px rgba(7, 15, 24, 0.22);
+      }
+      .icon {
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        font-size: 1.7rem;
+        background: linear-gradient(135deg, rgba(50, 224, 176, 0.18), rgba(79, 140, 255, 0.18));
+        border: 1px solid rgba(148, 163, 184, 0.14);
+        margin-bottom: 18px;
+      }
+      .card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+      .card p { color: var(--muted); font-size: 0.96rem; }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 22px;
+      }
+      .step {
+        position: relative;
+        padding: 26px 24px 22px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(17, 27, 40, 0.82), rgba(10, 17, 26, 0.8));
+      }
+      .num {
+        display: inline-block;
+        font-family: 'Playfair Display', serif;
+        font-size: 2.7rem;
+        font-weight: 800;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 6px;
+      }
+      .step h3 { margin: 6px 0; }
+      .step p { color: var(--muted); font-size: 0.95rem; }
+
+      .ask-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1.08fr;
+        gap: 48px;
+        align-items: start;
+      }
+      .ask-info p { color: var(--muted); margin: 16px 0 24px; }
+      .info-list {
+        display: grid;
+        gap: 12px;
+      }
+      .info-list a { color: var(--a); }
+      .form {
+        display: grid;
+        gap: 16px;
+        padding: 30px;
+        border-radius: 28px;
+        background: linear-gradient(180deg, rgba(15, 25, 38, 0.9), rgba(10, 17, 26, 0.9));
+        border: 1px solid var(--line);
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.12);
+      }
+      .form label {
+        display: grid;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.86rem;
+        font-weight: 600;
+      }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      .form input, .form select, .form textarea {
+        width: 100%;
+        padding: 13px 15px;
+        border-radius: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        background: rgba(8, 14, 24, 0.75);
+        color: var(--text);
+        font: inherit;
+      }
+      .form select option { background: #0a1320; }
+      .form input:focus, .form select:focus, .form textarea:focus {
+        outline: none;
+        border-color: rgba(50, 224, 176, 0.6);
+        box-shadow: 0 0 0 3px rgba(50, 224, 176, 0.15);
+      }
+      .form textarea { resize: vertical; }
+      .form-msg {
+        min-height: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .form-msg.err { color: #ff8b8b; }
+      .form-msg.ok { color: var(--a); }
+
+      .faq {
+        max-width: 820px !important;
+        display: grid;
+        gap: 14px;
+      }
+      details {
+        border: 1px solid var(--line);
+        background: rgba(17, 27, 40, 0.72);
+        border-radius: 16px;
+        padding: 18px 20px;
+        transition: border-color 0.2s ease;
+      }
+      details[open] { border-color: rgba(50, 224, 176, 0.42); }
+      summary {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-weight: 600;
+        list-style: none;
+      }
+      summary::-webkit-details-marker { display: none; }
+      summary::after {
+        content: '+';
+        font-size: 1.5rem;
+        color: var(--a);
+        transition: transform 0.3s ease;
+        line-height: 1;
+      }
+      details[open] summary::after { transform: rotate(45deg); }
+      details p { color: var(--muted); margin-top: 12px; }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        padding: 44px 5vw 24px;
+        background: rgba(0, 0, 0, 0.15);
+      }
+      .foot-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1.4fr;
+        gap: 32px;
+      }
+      .muted { color: var(--muted); }
+      .small { font-size: 0.82rem; }
+      .copy {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.82rem;
+        margin-top: 30px;
+      }
+
+      .wa-float {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 60;
+        width: 56px;
+        height: 56px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #2ae36b, #10b459);
+        font-size: 1.6rem;
+        box-shadow: 0 18px 34px rgba(37, 174, 100, 0.45);
+        animation: bob 2.5s ease-in-out infinite;
+      }
+      @keyframes bob { 50% { transform: translateY(-7px); } }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.8s ease var(--d, 0ms), transform 0.8s ease var(--d, 0ms);
+      }
+      .reveal.in { opacity: 1; transform: none; }
+
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 110px;
+          text-align: center;
+        }
+        .lead { margin-inline: auto; }
+        .cta, .stats-row, .trust { justify-content: center; }
+        .ask-wrap, .foot-inner { grid-template-columns: 1fr; }
+        .burger { display: flex; }
+        .menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          gap: 0;
+          background: rgba(7, 21, 33, 0.97);
+          border-bottom: 1px solid var(--line);
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.25s ease;
+        }
+        .menu.open { max-height: 400px; }
+        .menu a {
+          width: 100%;
+          padding: 16px 5vw;
+          border-top: 1px solid var(--line);
+        }
+        .menu .btn {
+          margin: 12px 5vw 18px;
+          width: auto;
+          text-align: center;
+        }
+        .section { padding: 72px 5vw; }
+      }
+
+      @media (max-width: 520px) {
+        .row { grid-template-columns: 1fr; }
+        .form { padding: 22px; }
+        .floating-badge { display: none; }
+        .visual-card { min-height: 410px; }
+        .chip { font-size: 0.72rem; padding: 6px 12px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .reveal { opacity: 1; transform: none; }
+      }
+    </style>
+  </body>
 </html>
